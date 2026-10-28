@@ -1,5 +1,5 @@
 CC		:= gcc
-CFLAGS	:= -std=c22 -Wall -Werror -pedantic -g
+CFLAGS	:= -std=c11 -Wall -Werror -pedantic -g
 TARGET  := myshell
 SRCS	:= $(wildcard src/*.c)
 

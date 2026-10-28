@@ -6,7 +6,7 @@
 #include <string.h>
 #include <unistd.h>
 #include <sys/types.h>
-#include <sys.wait.h>
+#include <sys/wait.h>
 
 #define PROMPT      "myshell> "
 #define MAX_ARGS    128
@@ -27,7 +27,7 @@ static int tokenize(char *line, char **argv, int max_args) {
     return argc;
 }
 
-static int run_comman(char **argv) {
+static int run_command(char **argv) {
     pid_t pid = fork();
 
     if (pid < 0) {
@@ -48,7 +48,7 @@ static int run_comman(char **argv) {
         return 1;
     }
     if (WIFEXITED(status)) {
-        return WEXITSTATUS(status)
+        return WEXITSTATUS(status);
     }
     if (WIFSIGNALED(status)) {
         return 128 + WTERMSIG(status);
@@ -66,7 +66,7 @@ int main(void) {
         printf(PROMPT);
         fflush(stdout);
 
-        ssize_t n = getline(&linem, &cap, stdin);
+        ssize_t n = getline(&line, &cap, stdin);
         if (n < 0) {
             putchar('\n');
             break;
@@ -77,7 +77,7 @@ int main(void) {
             continue;
         }
         
-        if (strcmp(argv[0, "exit"]) == 0) {
+        if (strcmp(argv[0], "exit") == 0) {
             break;
         }
 
